@@ -35,6 +35,7 @@
         选项: (以下选中的选项为正确答案)
       </div>
       <el-radio-group
+        style="display:block"
         v-model="item.isRight"
         v-for="(item, i) in question.options"
         :key="i"

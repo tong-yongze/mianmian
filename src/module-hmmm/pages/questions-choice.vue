@@ -197,7 +197,7 @@
                     placeholder="请选择"
                     size="small"
                     style="width:53%"
-                    @change="cityChange"
+
                   >
                     <el-option
                       v-for="(item, index) in citys"
@@ -287,15 +287,17 @@ import QTags from '../components/questions-tags'
 import QTable from '../components/questions-table'
 import QPreview from '../components/questions-preview'
 import TypeIn from '../components/type-in'
+import QuestionsPreview from '../components/questions-preview.vue'
+
 import { simple } from '@/api/hmmm/subjects' // 学科简单列表
 import { creatorssimple } from '@/api/base/users'
 import { list } from '@/api/hmmm/directorys' // 目录列表
-import { taglist } from '../../api/hmmm/tags' // 标签
+import { taglist } from '@/api/hmmm/tags' // 标签
 import { questionType, difficulty, direction } from '@/api/hmmm/constants' // 第二行需要的接口
-import { querestlist } from '../../api/hmmm/questions'
+import { querestlist } from '@/api/hmmm/questions'
 import { citys, provinces } from '@/api/hmmm/citys'
 import { choice } from '@/api/hmmm/questions' // 精选题库列表
-import QuestionsPreview from '../components/questions-preview.vue'
+
 
 export default {
   name: 'QusetionChoice',
@@ -427,6 +429,7 @@ export default {
     },
     // 城市 改变事件   获取市区
     async cityChange(city) {
+      this.searchForm.city = ''
       this.citys = citys(city)
       //  this.searchForm.city = ''
       // let arr = []
@@ -434,6 +437,7 @@ export default {
       // // console.log(arr)
       // this.citys = arr
     },
+
     // 清空表单按钮
     clearSearchForm() {
       // console.log(this.$refs.FormRefs)
