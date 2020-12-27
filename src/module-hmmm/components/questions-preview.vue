@@ -46,7 +46,12 @@
     <el-row>
       <el-col>
         【参考答案】：
-        <el-button size="mini" type="danger">视频答案预览</el-button>
+        <el-button size="mini" type="danger" @click="lookVideo"
+          >视频答案预览</el-button
+        >
+        <div v-show="isShow">
+          <video src="https://v-cdn.zjol.com.cn/276984.mp4" class="videoShow"></video>
+        </div>
       </el-col>
     </el-row>
     <el-row>
@@ -60,40 +65,48 @@
 </template>
 
 <script>
-import { detail } from "@/api/hmmm/questions";
+import { detail } from '@/api/hmmm/questions'
 export default {
-  name: "QPreview",
+  name: 'QPreview',
   props: {
     checkedId: {
       type: Number,
-      requried: true,
-    },
+      requried: true
+    }
   },
   data() {
     return {
       question: {},
-    };
+      isShow: false
+    }
   },
   created() {
-    this.getCheckedQusetion();
+    this.getCheckedQusetion()
   },
   methods: {
     async getCheckedQusetion() {
       const { data } = await detail({
-        id: this.checkedId,
-      });
-      console.log(data);
-      this.question = data;
+        id: this.checkedId
+      })
+      console.log(data)
+      this.question = data
     },
-  },
-};
+    lookVideo() {
+      this.isShow = !this.isShow
+    }
+  }
+}
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .el-col {
   padding: 10px 0;
 }
 .el-radio-group {
-    margin: 15px;
+  margin: 15px;
+}
+/deep/ .videoShow {
+  width: 400px;
+  height: 300px;
 }
 </style>

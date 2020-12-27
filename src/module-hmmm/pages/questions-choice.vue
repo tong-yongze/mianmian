@@ -271,7 +271,7 @@
       <!-- 预览试题对话框-->
       <el-dialog title="提示" width="50%" :visible.sync="previewDialog">
         <!-- 预览试题内容组件 -->
-
+            <q-preview :checkedId="choiceId"></q-preview>
         <span slot="footer" class="dialog-footer">
           <el-button type="primary" @click="previewDialog = false">
             关闭
@@ -295,6 +295,7 @@ import { questionType, difficulty, direction } from '@/api/hmmm/constants' // �
 import { querestlist } from '../../api/hmmm/questions'
 import { citys, provinces } from '@/api/hmmm/citys'
 import { choice } from '@/api/hmmm/questions' // 精选题库列表
+import QuestionsPreview from '../components/questions-preview.vue'
 
 export default {
   name: 'QusetionChoice',
@@ -302,7 +303,8 @@ export default {
     QTags,
     QTable,
     QPreview,
-    TypeIn
+    TypeIn,
+    QuestionsPreview
   },
   data() {
     return {
